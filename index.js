@@ -1,24 +1,20 @@
+import express from "express";
 import dotenv from "dotenv";
+import visaRoutes from "./routes/visaRoutes.js";
+
 dotenv.config();
-import { ChatGoogleGenerativeAI } from "@langchain/google-genai";
 
-const main = async () => {
-  try {
-    // Initialize the Google Generative AI model
-    const model = new ChatGoogleGenerativeAI({
-      apiKey: process.env.GEMINI_API_KEY,
-      model: "gemini-1.5-flash",
-    });
+const app = express();
+const PORT = process.env.PORT || 5000;
 
-    // Make a query to the model
-    const response = await model.invoke("Who is the current president of DRC?");
+// Middleware to parse JSON
+app.use(express.json());
 
-    // Log the response content
-    console.log("AI Response:", response.content);
-  } catch (error) {
-    console.error(`Error: ${error.message}`);
-  }
-};
+// Define routes
+app.use("/api", visaRoutes);
 
-// Run the main function
-main();
+// Start the server
+
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
