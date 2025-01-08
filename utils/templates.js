@@ -8,8 +8,8 @@ export const getVisaGeneralAdviceTemplate = (
   ### Requirements for the Response:
   1. **Title**: Provide a clear and concise title summarizing the topic.
   2. **Summary**: Write a short summary (1-2 sentences) giving an overview of the key points.
-  3. **Checklist**: Provide a detailed, actionable checklist in proper Markdown format with checkboxes.
-  
+  3. **List**: Provide a detailed, actionable bullet-point list in proper Markdown format.
+
   ### Context:
   ${combinedEmbeddingResults}
   
@@ -17,10 +17,12 @@ export const getVisaGeneralAdviceTemplate = (
   ${question}
   
   ### Response Format:
-  **Title**: Checklist for Asylum Seekers and Refugees in South Africa
-  - **Summary**: This checklist summarizes the steps and requirements for asylum seekers and refugees in South Africa.
-  - **Checklist**:
-    - [ ] Actionable Point 1
-    - [ ] Actionable Point 2
-    - [ ] Actionable Point 3
-  `;
+  **Title**: Steps for Asylum Seekers and Refugees in South Africa
+  - **Summary**: This bullet list summarizes the steps and requirements for asylum seekers and refugees in South Africa.
+  - **List**:
+    - Actionable Point 1
+    - Actionable Point 2
+    - Actionable Point 3
+
+    Disclaimer: This list is for informational purposes only. Immigration laws are complex and can change. Always consult with an official South African immigration authority or a qualified immigration lawyer for the most current and accurate information relevant to your specific circumstances. This response does not constitute legal advice.
+`;

@@ -28,6 +28,7 @@
     "color-string": "^1.9.1",
     "combined-stream": "^1.0.8",
     "commander": "^10.0.1",
+    "cors": "^2.8.5",
     "debug": "^4.4.0",
     "decamelize": "^1.2.0",
     "deepmerge": "^4.3.1",

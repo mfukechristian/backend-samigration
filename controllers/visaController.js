@@ -21,7 +21,7 @@ export const getVisaAdvice = async (req, res) => {
     }
 
     // Construct the user's query
-    const question = `As a user, here is my profile: ${nationality}, ${countryOfResidence}, ${intention}, ${description}?`;
+    const question = `As a user, here is my profile: ${nationality}, ${countryOfResidence}, ${intention}, ${description} what the documents required?`;
 
     // Initialize the Google Generative AI model
     const model = new ChatGoogleGenerativeAI({
