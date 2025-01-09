@@ -12,16 +12,22 @@ import collection from "../config/embedded.js";
 export const getVisaAdvice = async (req, res) => {
   try {
     // Extract user input from the request body
-    const { nationality, countryOfResidence, intention, description } =
+    const { name, nationality, countryOfResidence, intention, description } =
       req.body;
 
     // Validate required fields
-    if (!nationality || !countryOfResidence || !intention || !description) {
+    if (
+      !name ||
+      !nationality ||
+      !countryOfResidence ||
+      !intention ||
+      !description
+    ) {
       return res.status(400).json({ error: "All fields are required." });
     }
 
     // Construct the user's query
-    const question = `As a user, here is my profile: ${nationality}, ${countryOfResidence}, ${intention}, ${description} what the documents required?`;
+    const question = `As a user, here is my profile: ${nationality}, ${countryOfResidence}, ${intention}, ${description}. What documents are required?`;
 
     // Initialize the Google Generative AI model
     const model = new ChatGoogleGenerativeAI({
@@ -53,7 +59,7 @@ export const getVisaAdvice = async (req, res) => {
 
     // Generate the final response using the model
     const response = await model.invoke(
-      getVisaGeneralAdviceTemplate(combinedEmbeddingResults, question)
+      getVisaGeneralAdviceTemplate(combinedEmbeddingResults, question, name)
     );
 
     // Send the response back to the client

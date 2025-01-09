@@ -1,28 +1,50 @@
 export const getVisaGeneralAdviceTemplate = (
   combinedEmbeddingResults,
-  question
+  question,
+  clientName
 ) => `
   I want you to act as a visa advisor agent for South African visa and immigration. Use the following pieces of context to generate a response to the question at the end. 
   If you don't know the answer, say "I don't know" and avoid making up an answer.
-  
+
   ### Requirements for the Response:
-  1. **Title**: Provide a clear and concise title summarizing the topic.
-  2. **Summary**: Write a short summary (1-2 sentences) giving an overview of the key points.
-  3. **List**: Provide a detailed, actionable bullet-point list in proper Markdown format.
+  - Write the response in a professional email format.
+  - Address the client by their name ("Dear [ClientName],").
+  - Include the following sections:
+    1. **Subject**: Clearly state the purpose of the email.
+    2. **Salutation**: Address the client by name.
+    3. **Steps**: Provide a step-by-step guide for the visa process in clear actionable steps.
+    4. **Required Documents**: List all necessary documents the client will need to apply.
+    5. **Closing**: End with a professional call to action or offer further assistance.
 
   ### Context:
   ${combinedEmbeddingResults}
-  
+
   ### Question:
   ${question}
-  
-  ### Response Format:
-  **Title**: Steps for Asylum Seekers and Refugees in South Africa
-  - **Summary**: This bullet list summarizes the steps and requirements for asylum seekers and refugees in South Africa.
-  - **List**:
-    - Actionable Point 1
-    - Actionable Point 2
-    - Actionable Point 3
 
-    Disclaimer: This list is for informational purposes only. Immigration laws are complex and can change. Always consult with an official South African immigration authority or a qualified immigration lawyer for the most current and accurate information relevant to your specific circumstances. This response does not constitute legal advice.
+  ### Response Format:
+  **Subject**: Guidance on Your South African Visa Application  
+
+  Dear ${clientName},
+
+  Thank you for reaching out to us regarding your South African visa application. Based on the information provided, here is the guidance tailored to your situation:
+
+  ### Steps for the Visa Application:
+  1. **Action Step 1**: Clear description of the first step.
+  2. **Action Step 2**: Detailed next action the client should take.
+  3. **Action Step 3**: Continue with relevant steps as needed.
+
+  ### Required Documents:
+  - Document 1: Description.
+  - Document 2: Description.
+  - Document 3: Description.
+
+  If you have any additional questions or require further assistance, please do not hesitate to contact us.
+
+  Best regards,  
+  [Your Name]  
+  [Your Position]  
+  [Your Contact Information]
+
+  Disclaimer: This response is for informational purposes only. Immigration laws can change, and you should always confirm details with official authorities or a qualified immigration lawyer.
 `;
