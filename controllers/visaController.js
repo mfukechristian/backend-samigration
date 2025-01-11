@@ -12,14 +12,12 @@ import collection from "../config/embedded.js";
 export const getVisaAdvice = async (req, res) => {
   try {
     // Extract user input from the request body
-    const { name, nationality, countryOfResidence, intention, description } =
-      req.body;
+    const { name, nationality, intention, description } = req.body;
 
     // Validate required fields
     if (
       !name ||
       !nationality ||
-      !countryOfResidence ||
       !intention ||
       !description
     ) {
@@ -27,7 +25,7 @@ export const getVisaAdvice = async (req, res) => {
     }
 
     // Construct the user's query
-    const question = `As a user, here is my profile: ${nationality}, ${countryOfResidence}, ${intention}, ${description}. What documents are required?`;
+    const question = `As a user, here is my profile: ${nationality}, ${intention}, ${description}. What documents are required?`;
 
     // Initialize the Google Generative AI model
     const model = new ChatGoogleGenerativeAI({
