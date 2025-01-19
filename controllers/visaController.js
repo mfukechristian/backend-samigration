@@ -5,6 +5,7 @@ import {
   ChatGoogleGenerativeAI,
   GoogleGenerativeAIEmbeddings,
 } from "@langchain/google-genai";
+import { ChatMistralAI } from "@langchain/mistralai";
 import { MongoDBAtlasVectorSearch } from "@langchain/mongodb";
 import { getVisaGeneralAdviceTemplate } from "../utils/templates.js";
 import collection from "../config/embedded.js";
@@ -15,22 +16,18 @@ export const getVisaAdvice = async (req, res) => {
     const { name, nationality, intention, description } = req.body;
 
     // Validate required fields
-    if (
-      !name ||
-      !nationality ||
-      !intention ||
-      !description
-    ) {
+    if (!name || !nationality || !intention || !description) {
       return res.status(400).json({ error: "All fields are required." });
     }
 
     // Construct the user's query
     const question = `As a user, here is my profile: ${nationality}, ${intention}, ${description}. What documents are required?`;
 
-    // Initialize the Google Generative AI model
-    const model = new ChatGoogleGenerativeAI({
-      apiKey: process.env.GEMINI_API_KEY,
-      model: "gemini-1.5-flash",
+    // Initialize the Generative AI model
+    const model = new ChatMistralAI({
+      apiKey: process.env.MISTRAL_API_KEY,
+      model: "codestral-latest",
+      temperature: 0,
     });
 
     // Initialize embeddings for vector search
